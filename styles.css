@@ -14,12 +14,37 @@ body {
 header {
     background: #18408b;
     color: #fff;
-    padding: 20px 0;
+    padding: 12px 0;
 }
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    min-height: 50px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+.brand img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.brand h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.2;
 }
 nav a {
     color: #fff;

@@ -6,12 +6,23 @@
     <title>Narsimha Reddy Engineering College (Demo)</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        :root {
+            --nav-bg: #f5f5f5;
+            --primary: #0074d9;
+            --primary-dark: #005fa3;
+            --accent: #18408b;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+        }
         nav {
             display: flex;
             gap: 20px;
             justify-content: flex-end;
             align-items: center;
-            background: #f5f5f5;
+            background: var(--nav-bg);
             padding: 10px 0;
         }
         nav a {
@@ -21,15 +32,19 @@
             padding: 6px 12px;
             border-radius: 4px;
             transition: background 0.2s, color 0.2s;
+            font-size: 1rem;
         }
-        nav a:hover {
-            background: #0074d9;
+        nav a:hover, nav a.active {
+            background: var(--primary);
             color: #fff;
         }
         .container.nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 18px;
         }
         .brand {
             display: flex;
@@ -42,10 +57,12 @@
             border: none;
             background: transparent;
             object-fit: contain;
+            max-width: 30vw;
         }
         h1 {
             margin: 0;
             font-size: 1.5rem;
+            word-break: break-word;
         }
         .intro-section {
             max-width: 800px;
@@ -58,7 +75,7 @@
         }
         .intro-section h2 {
             margin-top: 0;
-            color: #0074d9;
+            color: var(--primary);
         }
         .intro-header {
             display: flex;
@@ -87,24 +104,108 @@
             justify-content: center;
             gap: 24px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         .social-links a {
             display: flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            color: #0074d9;
+            color: var(--primary);
             font-weight: 500;
             font-size: 1.1rem;
             transition: color 0.2s;
         }
         .social-links a:hover {
-            color: #005fa3;
+            color: var(--primary-dark);
         }
         .social-links svg {
             width: 22px;
             height: 22px;
             vertical-align: middle;
+        }
+        footer .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+        /* Responsive Styles */
+        @media (max-width: 900px) {
+            .intro-section {
+                max-width: 98vw;
+                padding: 18px 4vw;
+            }
+            .container.nav {
+                max-width: 98vw;
+                padding: 0 8px;
+            }
+        }
+        @media (max-width: 700px) {
+            .brand img {
+                width: 80px;
+            }
+            .intro-header img {
+                width: 70px;
+            }
+            .intro-section h2 {
+                font-size: 1.3rem;
+            }
+            .mission-vision-values {
+                margin: 18px 0 14px 0;
+            }
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 8px 0;
+            }
+            .container.nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .brand img {
+                width: 60px;
+            }
+            h1 {
+                font-size: 1.1rem;
+            }
+            .intro-section {
+                padding: 12px 2vw;
+                margin: 18px auto 0 auto;
+            }
+            .intro-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .intro-header img {
+                width: 50px;
+            }
+            .intro-section h2 {
+                font-size: 1.1rem;
+            }
+            .mission-vision-values h3 {
+                font-size: 1rem;
+            }
+            .mission-vision-values ul {
+                padding-left: 18px;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+            .social-links {
+                gap: 12px;
+                font-size: 1rem;
+            }
+            .social-links svg {
+                width: 18px;
+                height: 18px;
+            }
         }
     </style>
 </head>
@@ -112,19 +213,18 @@
     <header>
         <div class="container nav">
             <div class="brand">
-                <!-- ...existing code... -->
-<img src="nrcm-logo.jpeg" alt="NRCM Logo">
-<!-- ...existing code... -->
+                <img src="nrcm-logo.jpeg" alt="NRCM Logo">
                 <h1>Narsimha Reddy Engineering College</h1>
             </div>
             <nav>
-                <a href="#">Home</a>
-                <a href="#">About Toastmasters</a>
+                <a href="#" class="active">Home</a>
+                <a href="about.html">About Toastmasters</a>
                 <a href="clubleads.html">Club Mentors & Leads</a>
-                <a href="#">Events & Calendars</a>
-                <a href="#">Gallery</a>
-                <a href="#">Contact</a>
-                <a href="#">Feedback</a>
+                <a href="events.html">Events & Calendars</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="login.html">Login</a>
             </nav>
         </div>
     </header>
@@ -138,10 +238,15 @@
                 Toastmasters is a global leader in communication and leadership development. Our Narasimhareddy chapter is dedicated to empowering students to become confident speakers and inspiring leaders.
             </p>
             <div class="mission-vision-values">
+                <h3>Our Aim</h3>
+                <p>To empower students to become confident communicators and inspiring leaders through a supportive and growth-driven environment.
+</p>
+                
                 <h3>Our Mission</h3>
-                <p>To provide a supportive and positive learning experience in which members are empowered to develop communication and leadership skills, resulting in greater self-confidence and personal growth.</p>
+                <p>We provide a positive and engaging platform where students can practice public speaking, enhance communication skills, and develop leadership qualities through consistent learning, feedback, and collaboration.
+</p>
                 <h3>Our Vision</h3>
-                <p>To be the first-choice provider of dynamic, high-value, experiential communication and leadership skills development.</p>
+                <p>To create a community of confident speakers and leaders who can inspire, influence, and make a positive impact in every sphere of life.</p>
                 <h3>Our Values</h3>
                 <ul>
                     <li>Integrity</li>
@@ -177,3 +282,6 @@
         <div class="container">
             &copy; 2025 Narsimha Reddy Engineering College | All Rights Reserved
         </div>
+    </footer>
+</body>
+</html>

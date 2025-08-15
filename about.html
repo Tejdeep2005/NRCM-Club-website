@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Toastmasters - NRCM Toastmasters</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --nav-bg: #f5f5f5;
+            --primary: #0074d9;
+            --primary-dark: #005fa3;
+            --accent: #18408b;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fff;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+            align-items: center;
+            background: var(--nav-bg);
+            padding: 10px 0;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+            font-size: 1rem;
+        }
+        nav a:hover, nav a.active {
+            background: var(--primary);
+            color: #fff;
+        }
+        .container.nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand img {
+            width: 120px;
+            height: auto;
+            border: none;
+            background: transparent;
+            object-fit: contain;
+            max-width: 30vw;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            word-break: break-word;
+        }
+        /* Carousel styles */
+        .carousel-container {
+            max-width: 700px;
+            margin: 32px auto 24px auto;
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            background: #eaeaea;
+        }
+        .carousel-slide.active {
+            display: block;
+            animation: fadein 1s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .carousel-dots {
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            bottom: 12px;
+        }
+        .carousel-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 4px;
+            background: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .carousel-dot.active {
+            background: var(--primary);
+        }
+        /* About section */
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            padding: 32px 24px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .about-section h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.7;
+        }
+        footer .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+        /* Responsive Styles */
+        @media (max-width: 900px) {
+            .carousel-container {
+                max-width: 98vw;
+            }
+            .about-section {
+                max-width: 98vw;
+                padding: 18px 4vw;
+            }
+            .container.nav {
+                max-width: 98vw;
+                padding: 0 8px;
+            }
+        }
+        @media (max-width: 700px) {
+            .brand img {
+                width: 80px;
+            }
+            .carousel-container {
+                max-width: 98vw;
+                margin: 18px auto 18px auto;
+            }
+            .carousel-slide {
+                height: 220px;
+            }
+            .about-section {
+                padding: 14px 6px;
+            }
+            .about-section h2 {
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 8px 0;
+            }
+            .container.nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .brand img {
+                width: 60px;
+            }
+            h1 {
+                font-size: 1.1rem;
+            }
+            .carousel-container {
+                margin: 10px auto 10px auto;
+            }
+            .carousel-slide {
+                height: 140px;
+            }
+            .about-section {
+                padding: 8px 2vw;
+                margin: 12px auto 20px auto;
+            }
+            .about-section h2 {
+                font-size: 1.1rem;
+            }
+            .about-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <img src="nrcm-logo.jpeg" alt="NRCM Logo">
+                <h1>Narsimha Reddy Engineering College</h1>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About Toastmasters</a>
+                <a href="clubleads.html">Club Mentors & Leads</a>
+                <a href="events.html">Events & Calendars</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!-- Carousel -->
+        <div class="carousel-container">
+            <img src="groupphoto1.jpg" class="carousel-slide active" alt="Toastmasters Event 1">
+            <img src="images/tm2.jpg" class="carousel-slide" alt="Toastmasters Event 2">
+            <img src="images/tm3.jpg" class="carousel-slide" alt="Toastmasters Event 3">
+            <div class="carousel-dots">
+                <span class="carousel-dot active" onclick="showSlide(0)"></span>
+                <span class="carousel-dot" onclick="showSlide(1)"></span>
+                <span class="carousel-dot" onclick="showSlide(2)"></span>
+            </div>
+        </div>
+        <!-- About Toastmasters -->
+        <section class="about-section">
+            <h2>About Toastmasters Club</h2>
+            <p>
+                The Toastmasters Club at Narasimha Reddy Engineering College (NRCM) is a vibrant community dedicated to helping students unlock their potential in public speaking, leadership, and communication. We believe that great leaders are not born — they are made through practice, feedback, and continuous learning.
+
+
+            </p>
+            <p>
+                Our club provides a supportive and encouraging environment where members can:
+
+<li>Sharpen their public speaking and presentation skills</li>
+<li>Develop leadership abilities through structured roles and responsibilities</li>
+<li>Gain confidence in expressing ideas clearly and persuasively</li>
+<li>Network with like-minded peers and mentors</li>
+
+
+            </p>
+            <p>
+                At Toastmasters NRCM, every meeting is a step towards becoming a better communicator and leader. Through engaging activities, prepared speeches, impromptu sessions, and constructive evaluations, members learn to think on their feet, inspire an audience, and lead with impact.
+
+Whether you are a beginner looking to overcome stage fear or a skilled speaker aiming to polish your craft, our club welcomes you to learn, grow, and succeed together.
+
+   <b>
+    <p>Our Motto: “Where Leaders Are Made.” </p></b>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            &copy; 2025 Narsimha Reddy Engineering College Toastmasters | All Rights Reserved
+        </div>
+    </footer>
+    <script>
+        // Simple JS carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        function showSlide(idx) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === idx);
+                dots[i].classList.toggle('active', i === idx);
+            });
+            currentSlide = idx;
+        }
+        function nextSlide() {
+            let idx = (currentSlide + 1) % slides.length;
+            showSlide(idx);
+        }
+        let carouselInterval = setInterval(nextSlide, 3000);
+        // Pause on hover
+        document.querySelector('.carousel-container').addEventListener('mouseenter', () => clearInterval(carouselInterval));
+        document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextSlide, 3000);
+        });
+        // Allow dot click navigation
+        window.showSlide = showSlide;
+    </script>
+</body>
+</html>
