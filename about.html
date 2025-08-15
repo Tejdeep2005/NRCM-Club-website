@@ -24,6 +24,12 @@
             align-items: center;
             background: var(--nav-bg);
             padding: 10px 0;
+            position: relative;
+        }
+        nav .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
         nav a {
             text-decoration: none;
@@ -63,6 +69,36 @@
             margin: 0;
             font-size: 1.5rem;
             word-break: break-word;
+        }
+        /* Hamburger styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            margin-left: 10px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            height: 4px;
+            width: 28px;
+            background: #333;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+            display: block;
+        }
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
         }
         /* Carousel styles */
         .carousel-container {
@@ -166,12 +202,6 @@
             }
         }
         @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-                padding: 8px 0;
-            }
             .container.nav {
                 flex-direction: column;
                 align-items: flex-start;
@@ -183,21 +213,37 @@
             h1 {
                 font-size: 1.1rem;
             }
-            .carousel-container {
-                margin: 10px auto 10px auto;
+            nav {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 0;
+                position: relative;
             }
-            .carousel-slide {
-                height: 140px;
+            .hamburger {
+                display: flex;
             }
-            .about-section {
-                padding: 8px 2vw;
-                margin: 12px auto 20px auto;
+            nav .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--nav-bg);
+                position: absolute;
+                top: 46px;
+                left: 0;
+                z-index: 100;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             }
-            .about-section h2 {
-                font-size: 1.1rem;
+            nav .nav-links.open {
+                display: flex;
             }
-            .about-section p {
-                font-size: 1rem;
+            nav a {
+                width: 100%;
+                padding: 12px 18px;
+                border-radius: 0;
+                border-bottom: 1px solid #e0e0e0;
+                font-size: 1.05rem;
             }
         }
     </style>
@@ -210,14 +256,21 @@
                 <h1>Narsimha Reddy Engineering College</h1>
             </div>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="about.html" class="active">About Toastmasters</a>
-                <a href="clubleads.html">Club Mentors & Leads</a>
-                <a href="events.html">Events & Calendars</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="contact.html">Contact</a>
-                <a href="feedback.html">Feedback</a>
-                <a href="login.html">Login</a>
+                <button class="hamburger" aria-label="Menu" onclick="toggleMenu(this)">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html" class="active">About Toastmasters</a>
+                    <a href="clubleads.html">Club Mentors & Leads</a>
+                    <a href="events.html">Events & Calendars</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="feedback.html">Feedback</a>
+                    <a href="login.html">Login</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -238,26 +291,24 @@
             <h2>About Toastmasters Club</h2>
             <p>
                 The Toastmasters Club at Narasimha Reddy Engineering College (NRCM) is a vibrant community dedicated to helping students unlock their potential in public speaking, leadership, and communication. We believe that great leaders are not born — they are made through practice, feedback, and continuous learning.
-
-
             </p>
             <p>
                 Our club provides a supportive and encouraging environment where members can:
-
-<li>Sharpen their public speaking and presentation skills</li>
-<li>Develop leadership abilities through structured roles and responsibilities</li>
-<li>Gain confidence in expressing ideas clearly and persuasively</li>
-<li>Network with like-minded peers and mentors</li>
-
-
+                <ul>
+                    <li>Sharpen their public speaking and presentation skills</li>
+                    <li>Develop leadership abilities through structured roles and responsibilities</li>
+                    <li>Gain confidence in expressing ideas clearly and persuasively</li>
+                    <li>Network with like-minded peers and mentors</li>
+                </ul>
             </p>
             <p>
                 At Toastmasters NRCM, every meeting is a step towards becoming a better communicator and leader. Through engaging activities, prepared speeches, impromptu sessions, and constructive evaluations, members learn to think on their feet, inspire an audience, and lead with impact.
-
-Whether you are a beginner looking to overcome stage fear or a skilled speaker aiming to polish your craft, our club welcomes you to learn, grow, and succeed together.
-
-   <b>
-    <p>Our Motto: “Where Leaders Are Made.” </p></b>
+                <br><br>
+                Whether you are a beginner looking to overcome stage fear or a skilled speaker aiming to polish your craft, our club welcomes you to learn, grow, and succeed together.
+            </p>
+            <b>
+                <p>Our Motto: “Where Leaders Are Made.” </p>
+            </b>
         </section>
     </main>
     <footer>
@@ -266,6 +317,22 @@ Whether you are a beginner looking to overcome stage fear or a skilled speaker a
         </div>
     </footer>
     <script>
+        // Hamburger menu JS
+        function toggleMenu(btn) {
+            btn.classList.toggle('open');
+            document.querySelector('.nav-links').classList.toggle('open');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 600) {
+                        document.querySelector('.nav-links').classList.remove('open');
+                        document.querySelector('.hamburger').classList.remove('open');
+                    }
+                });
+            });
+        });
+
         // Simple JS carousel
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');

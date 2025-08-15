@@ -26,6 +26,12 @@
             align-items: center;
             background: var(--nav-bg);
             padding: 10px 0;
+            position: relative;
+        }
+        nav .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
         nav a {
             text-decoration: none;
@@ -65,6 +71,36 @@
             margin: 0;
             font-size: 1.5rem;
             word-break: break-word;
+        }
+        /* Hamburger styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            margin-left: 10px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            height: 4px;
+            width: 28px;
+            background: #333;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+            display: block;
+        }
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
         }
         .contact-section {
             max-width: 700px;
@@ -194,8 +230,9 @@
             nav {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 8px;
-                padding: 8px 0;
+                gap: 0;
+                padding: 0;
+                position: relative;
             }
             .container.nav {
                 flex-direction: column;
@@ -218,6 +255,32 @@
             .google-form-embed {
                 min-height: 260px;
             }
+            .hamburger {
+                display: flex;
+            }
+            nav .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                background: var(--nav-bg);
+                position: absolute;
+                top: 46px;
+                left: 0;
+                z-index: 100;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+            nav .nav-links.open {
+                display: flex;
+            }
+            nav a {
+                width: 100%;
+                text-align: left;
+                padding: 12px 18px;
+                border-radius: 0;
+                border-bottom: 1px solid #e0e0e0;
+                font-size: 1.05rem;
+            }
         }
     </style>
 </head>
@@ -229,14 +292,21 @@
                 <h1>Narsimha Reddy Engineering College</h1>
             </div>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="about.html">About Toastmasters</a>
-                <a href="clubleads.html">Club Mentors & Leads</a>
-                <a href="events.html">Events & Calendars</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="contact.html" class="active">Contact</a>
-                <a href="feedback.html">Feedback</a>
-                <a href="login.html">Login</a>
+                <button class="hamburger" aria-label="Menu" onclick="toggleMenu(this)">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Toastmasters</a>
+                    <a href="clubleads.html">Club Mentors & Leads</a>
+                    <a href="events.html">Events & Calendars</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <a href="feedback.html">Feedback</a>
+                    <a href="login.html">Login</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -244,16 +314,6 @@
         <section class="contact-section">
             <h2>Contact Us</h2>
             <ul class="contact-list">
-                <li>
-                    <span class="contact-label">President:</span>
-                    I. Akshay Snehith<br>
-                    <span class="contact-label">Phone:</span> <a href="tel:+910000000000">+91 00000 00000</a><br>
-                    <span class="contact-label">Email:</span> <a href="mailto:priya.sharma@email.com">sample@email.com</a><br>
-                    <span class="contact-label">LinkedIn:</span>
-                    <span class="contact-links">
-                        <a href="https://www.linkedin.com/in/priyasharma" target="_blank"></a>
-                    </span>
-                </li>
                 <li>
                     <span class="contact-label">Vice President:</span>
                     B. Uma Sravya<br>
@@ -265,8 +325,8 @@
                     </span>
                 </li>
                 <li>
-                    <span class="contact-label">Faculty Coordinator:</span>
-                    Dr. S. Reddy<br>
+                    <span class="contact-label">Secretary:</span>
+                    I. Ram Chander<br>
                     <span class="contact-label">Phone:</span> <a href="tel:+919800112233">+91 00000 00000</a><br>
                     <span class="contact-label">Email:</span> <a href="mailto:s.reddy@nrcm.edu.in">sample@nrcm.edu.in</a><br>
                     <span class="contact-label">LinkedIn:</span>
@@ -289,6 +349,23 @@
         </div>
     </footer>
     <script>
+        // Hamburger menu JS
+        function toggleMenu(btn) {
+            btn.classList.toggle('open');
+            document.querySelector('.nav-links').classList.toggle('open');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 600) {
+                        document.querySelector('.nav-links').classList.remove('open');
+                        document.querySelector('.hamburger').classList.remove('open');
+                    }
+                });
+            });
+            loadForm();
+        });
+
         // Load form from localStorage if exists
         function loadForm() {
             const url = localStorage.getItem('nrcm_tm_google_form');
@@ -323,8 +400,6 @@
                 loadForm();
             }
         }
-        // Initial load
-        loadForm();
     </script>
 </body>
 </html>
